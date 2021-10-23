@@ -1,40 +1,40 @@
-const { resolveInclude } = require("ejs");
 const express=require("express"); 
-const app=express();    
+const mongoose=require("mongoose");  
+const _=require("lodash");
+mongoose.connect("mongodb+srv://yaswanth:6301278150@cluster0.zihvf.mongodb.net/listdb?retryWrites=true&w=majority");
+const app=express();   
 app.use(express.urlencoded({extended:true}));
 app.set("view engine",'ejs');
-app.use(express.static("static")); 
-const item=[],work=[]; 
+app.use(express.static("static"));  
+const schema={
+    name:String,
+}; 
+const item=mongoose.model("item",schema); 
 app.get("/",function(req,res)
 {
-    res.render("list",{title:"home" ,newitem:item});
-});   
-app.post("/",function(req,res)
+    res.render("list",{title:"home"}); 
+});  
+app.get("/:customname",function(req,res)
 {   
+    var name=_.capitalize(req.params.customname);
+    res.render("about");
+}) ;
+app.post("/",function(req,res)
+{    
   if(req.body.button==="home")
-  {
-    item.push(req.body.newItem); 
+  { 
+    const itemname=req.body.newname; 
+    const newitem=new item(
+    {
+        name:itemname
+    }); 
+    newitem.save();  
     res.redirect("/"); 
-  }
-  else 
-  {
-      work.push(req.body.newItem);
-      res.redirect("/work");
-  }
+  } 
 }); 
-app.listen(3000,function()
+app.listen(process.env.PORT || 3000,function()
 {
     console.log("server running");
 });
-app.get("/work",function(req,res)
-{
-    res.render("list",{title:"work",newitem:work});
-}); 
-app.get("/about",function(req,res)
-{
-    res.render("about");
-}); 
-app.post("/about",function(req,res)
-{
-    res.send("hii");
-});
+
+ 

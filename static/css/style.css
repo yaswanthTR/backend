@@ -1,4 +1,8 @@
-form
+input[type="text"]
 {
-    color:pink;
+    color:green;
+} 
+button 
+{
+    background-color:red;
 }
