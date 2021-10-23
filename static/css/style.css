@@ -5,4 +5,10 @@ input[type="text"]
 button 
 {
     background-color:red;
+} 
+h1 
+{
+    color:green; 
+    float:center; 
+    text-align:center;
 }

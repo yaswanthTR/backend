@@ -29,10 +29,10 @@ app.post("/",function(req,res)
         name:itemname
     }); 
     newitem.save();  
-    res.redirect("/"); 
+    res.render("new"); 
   } 
 }); 
-app.listen(process.env.PORT,function()
+app.listen(process.env.PORT || 3000,function()
 {
     console.log("server running");
 });
