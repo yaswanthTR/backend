@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "boby",
-  "license": "ISC",
+  "license": "ISC", 
+  "engines": {
+    "node": "14.18.0"
+  },
   "dependencies": {
     "ejs": "^3.1.6",
     "express": "^4.17.1",
