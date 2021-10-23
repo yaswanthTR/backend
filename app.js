@@ -29,7 +29,7 @@ app.post("/",function(req,res)
         name:itemname
     }); 
     newitem.save();  
-    res.render("new"); 
+    res.redirect("new"); 
   } 
 }); 
 app.listen(process.env.PORT || 3000,function()
